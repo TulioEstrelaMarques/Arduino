@@ -1,0 +1,77 @@
+int led1 = 13;
+int led2 = 12;
+int led3 = 11;
+int led4 = 10;
+int led5 = 9;
+int led6 = 8;
+int led7 = 7;
+int led8 = 6;
+int on = 1;
+int off = 0;
+int randNumber = random(6,13);
+
+void setup(){
+  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(A4, INPUT_PULLUP);
+  pinMode(A3, INPUT_PULLUP);
+  pinMode(A2, INPUT_PULLUP);
+  pinMode(A1, INPUT_PULLUP);
+}
+
+void loop(){
+  int an1 = analogRead(A1);
+  int an2 = analogRead(A2);
+  int an3 = analogRead(A3);
+  int an4 = analogRead(A4);
+  int i;
+  while(an1 == off & an2 == off & an3 == off & an4 == off){
+    for(i = 6; i <= 13; i++){
+      digitalWrite(i, on);
+      delay(2000);
+      digitalWrite(i, off);
+    }
+    if(an4 == on){
+   	  for(i = 6; i <= 13; i++){
+      	digitalWrite(i, off);
+       }
+    }
+    if(an3 == on){
+      if(i % 2 != 0){
+      	for(i = 6; i <= 13; i++){
+      		digitalWrite(i, on);
+        }
+      }
+    }
+   	if(an3 == on && an4 == on){
+      if(i % 2 == 0){
+      	for(i = 6; i <= 13; i++){
+      		digitalWrite(i, on);
+        }
+      }
+    }
+    if(an2 == on){
+    	for(i = 6; i <= 13; i++){
+      		digitalWrite(randNumber, on);
+        }
+    }
+     if(an2 == on && an4 == on){
+   	  for(i = 6; i <= 13; i++){
+      	digitalWrite(i, on);
+       }
+    }
+    if(an2 == on && an3 == on){
+    	for(i = 6; i <= 13; i++){
+          if(i % 2 == 0 || i % 2 != 0){
+      		digitalWrite(randNumber, on);
+          }
+        }
+    }
+  }
+}
